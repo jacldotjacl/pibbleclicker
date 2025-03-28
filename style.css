@@ -8,24 +8,45 @@ body {
   padding: 0;
 }
 
-/* Instruction Text at the Top Center */
-#enter-text {
+/* Flyout Window for Snake Game (center-left) */
+#flyout-window {
   position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
-  color: #333;
-  background: #fff;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  z-index: 1000;
+  top: 50%;
+  left: 10px;
+  width: 400px;
+  height: 300px;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border: 2px solid #333;
+  z-index: 2000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+#flyout-window iframe {
+  width: 100%;
+  height: calc(100% - 40px); /* leave room for header */
+  border: none;
 }
 
-/* Main Game Container */
-#game-container {
-  margin-top: 50px;
+/* Header within the flyout window */
+#flyout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eee;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+#enter-text {
+  font-size: 14px;
+  color: #333;
+}
+#flyout-close {
+  background: #ff6666;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
 }
 
 /* Snake Button (top left) */
@@ -41,36 +62,6 @@ body {
 #snake-button img {
   width: 50px;
   height: auto;
-}
-
-/* Flyout Window for Snake Game (now center-left) */
-#flyout-window {
-  position: fixed;
-  top: 50%;
-  left: 10px;
-  width: 400px;
-  height: 300px;
-  transform: translateY(-50%);
-  background-color: #fff;
-  border: 2px solid #333;
-  z-index: 2000;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  display: none;
-}
-#flyout-window iframe {
-  width: 100%;
-  height: calc(100% - 30px); /* leave room for the close button */
-  border: none;
-}
-#flyout-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #ff6666;
-  color: #fff;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
 }
 
 /* Pibble Button */
@@ -95,13 +86,26 @@ button {
   animation: bounce 0.3s ease;
 }
 @keyframes bounce {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.2); }
-  50% { transform: scale(0.9); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 button:disabled {
   cursor: not-allowed;
+}
+
+/* Main Game Container */
+#game-container {
+  margin-top: 50px;
 }
 
 /* Container for Upgrades */
@@ -112,21 +116,25 @@ button:disabled {
   gap: 20px;
   margin: 20px 0;
 }
-#upgrades, #click-upgrades {
+#upgrades,
+#click-upgrades {
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
   background-color: #fff;
   width: 300px;
 }
-#upgrades h2, #click-upgrades h2 {
+#upgrades h2,
+#click-upgrades h2 {
   margin-top: 0;
 }
-#upgrades p, #click-upgrades p {
+#upgrades p,
+#click-upgrades p {
   font-size: 14px;
   margin: 5px 0;
 }
-#upgrades button, #click-upgrades button {
+#upgrades button,
+#click-upgrades button {
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
@@ -135,10 +143,12 @@ button:disabled {
   background-color: #ffcccb;
   transition: 0.3s;
 }
-#upgrades button:hover, #click-upgrades button:hover {
+#upgrades button:hover,
+#click-upgrades button:hover {
   background-color: #ff9999;
 }
-#upgrades button:disabled, #click-upgrades button:disabled {
+#upgrades button:disabled,
+#click-upgrades button:disabled {
   background-color: #ddd;
 }
 #reset-button {
