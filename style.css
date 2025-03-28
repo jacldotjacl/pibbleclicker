@@ -21,13 +21,13 @@ body {
 #snake-button {
   left: 10px;
 }
-#snake-button img, 
+#subway-button {
+  left: 70px;
+}
+#snake-button img,
 #subway-button img {
   width: 50px;
   height: auto;
-}
-#subway-button {
-  left: 70px;
 }
 
 /* Flyout Windows (for both games) */
@@ -48,7 +48,7 @@ body {
 #flyout-window iframe,
 #flyout-subway iframe {
   width: 100%;
-  height: calc(100% - 40px); /* room for header */
+  height: calc(100% - 40px); /* leave room for header */
   border: none;
 }
 
@@ -76,7 +76,7 @@ body {
   cursor: pointer;
 }
 
-/* Pibble Button */
+/* Pibble (Click) Button */
 #click-button {
   padding: 0;
   border: none;
