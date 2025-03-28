@@ -52,16 +52,19 @@ button:disabled {
   cursor: not-allowed;
 }
 
-#upgrades div {
+#upgrades div,
+#click-upgrades div {
   margin: 20px 0;
 }
 
-#upgrades p {
+#upgrades p,
+#click-upgrades p {
   font-size: 14px;
   margin: 5px 0;
 }
 
-#upgrades button {
+#upgrades button,
+#click-upgrades button {
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
@@ -71,11 +74,13 @@ button:disabled {
   transition: 0.3s;
 }
 
-#upgrades button:hover {
+#upgrades button:hover,
+#click-upgrades button:hover {
   background-color: #ff9999;
 }
 
-#upgrades button:disabled {
+#upgrades button:disabled,
+#click-upgrades button:disabled {
   background-color: #ddd;
 }
 
