@@ -57,6 +57,15 @@ resetButton.addEventListener("click", () => {
 clickButton.addEventListener("click", () => {
   points++;
   updatePoints();
+
+  // Add bounce effect
+  const pibbleImage = document.getElementById("pibble-image");
+  pibbleImage.classList.add("clicked");
+
+  // Remove bounce effect after animation
+  setTimeout(() => {
+    pibbleImage.classList.remove("clicked");
+  }, 300);
 });
 
 treatUpgrade.addEventListener("click", () => {
