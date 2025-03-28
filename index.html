@@ -7,9 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Snake Button in the top left corner -->
+  <!-- Top Left Buttons -->
   <button id="snake-button">
     <img src="snakebutton.png" alt="Snake" />
+  </button>
+  <button id="subway-button">
+    <img src="subwaysurfers.png" alt="Subway Surfers" />
   </button>
 
   <!-- Flyout Window for Snake Game (hidden by default) -->
@@ -19,6 +22,15 @@
       <button id="flyout-close">X</button>
     </div>
     <iframe src="https://emulatoros.github.io/gfile/snake/"></iframe>
+  </div>
+
+  <!-- Flyout Window for Subway Surfers (hidden by default) -->
+  <div id="flyout-subway">
+    <div id="flyout-header-subway">
+      <div id="enter-text-subway">Press ENTER to play</div>
+      <button id="flyout-close-subway">X</button>
+    </div>
+    <iframe src="https://77pen.github.io/p8/subway-surfers-newyork/"></iframe>
   </div>
 
   <!-- Main Game Container -->
@@ -33,38 +45,21 @@
       <div id="upgrades">
         <h2>Upgrades</h2>
         <div id="treat-info">
-          <p>
-            Treat Generators Owned: <span id="treat-owned">0</span>
-          </p>
-          <p>
-            Treat Generators PPS: <span id="treat-pps">0</span>
-          </p>
-          <button id="treat-upgrade" disabled>
-            Buy Treat Generator (50 Points)
-          </button>
+          <p>Treat Generators Owned: <span id="treat-owned">0</span></p>
+          <p>Treat Generators PPS: <span id="treat-pps">0</span></p>
+          <button id="treat-upgrade" disabled>Buy Treat Generator (50 Points)</button>
         </div>
         <div id="toy-info">
-          <p>
-            Toy Factories Owned: <span id="toy-owned">0</span>
-          </p>
-          <p>
-            Toy Factories PPS: <span id="toy-pps">0</span>
-          </p>
-          <button id="toy-upgrade" disabled>
-            Buy Toy Factory (200 Points)
-          </button>
+          <p>Toy Factories Owned: <span id="toy-owned">0</span></p>
+          <p>Toy Factories PPS: <span id="toy-pps">0</span></p>
+          <button id="toy-upgrade" disabled>Buy Toy Factory (200 Points)</button>
         </div>
       </div>
       <div id="click-upgrades">
         <h2>Click Upgrades</h2>
         <div>
-          <p>
-            Click Power:
-            <span id="click-power">1</span> Pibble Points per Click
-          </p>
-          <button id="click-upgrade" disabled>
-            Increase Click Power (100 Points)
-          </button>
+          <p>Click Power: <span id="click-power">1</span> Pibble Points per Click</p>
+          <button id="click-upgrade" disabled>Increase Click Power (100 Points)</button>
         </div>
       </div>
     </div>
