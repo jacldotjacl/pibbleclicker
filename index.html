@@ -21,11 +21,7 @@
         <div id="enter-text">Press ENTER to play</div>
         <button id="flyout-close">X</button>
       </div>
-      <iframe
-        src="https://emulatoros.github.io/gfile/snake/"
-        allow="fullscreen"
-        sandbox="allow-scripts allow-same-origin"
-      ></iframe>
+      <iframe src="https://emulatoros.github.io/gfile/snake/" allow="fullscreen" sandbox="allow-scripts allow-same-origin"></iframe>
     </div>
 
     <!-- Flyout Window for Subway Surfers (hidden by default) -->
@@ -34,11 +30,7 @@
         <div id="enter-text-subway">Press SPACE to play</div>
         <button id="flyout-close-subway">X</button>
       </div>
-      <iframe
-        src="https://77pen.github.io/p8/subway-surfers-newyork/"
-        allow="fullscreen"
-        sandbox="allow-scripts allow-same-origin"
-      ></iframe>
+      <iframe src="https://77pen.github.io/p8/subway-surfers-newyork/" allow="fullscreen" sandbox="allow-scripts allow-same-origin"></iframe>
     </div>
 
     <!-- Main Game Container -->
@@ -55,85 +47,46 @@
           <h2>Upgrades</h2>
           <!-- Existing Upgrades -->
           <div id="treat-info">
-            <p>
-              Treat Generators Owned: <span id="treat-owned">0</span>
-            </p>
-            <p>
-              Treat Generators PPS: <span id="treat-pps">0</span>
-            </p>
-            <button id="treat-upgrade" disabled>
-              Buy Treat Generator (50 Points)
-            </button>
+            <p>Treat Generators Owned: <span id="treat-owned">0</span></p>
+            <p>Treat Generators PPS: <span id="treat-pps">0</span></p>
+            <button id="treat-upgrade" disabled>Buy Treat Generator (50 Points)</button>
           </div>
           <div id="toy-info">
-            <p>
-              Toy Factories Owned: <span id="toy-owned">0</span>
-            </p>
-            <p>
-              Toy Factories PPS: <span id="toy-pps">0</span>
-            </p>
-            <button id="toy-upgrade" disabled>
-              Buy Toy Factory (200 Points)
-            </button>
+            <p>Toy Factories Owned: <span id="toy-owned">0</span></p>
+            <p>Toy Factories PPS: <span id="toy-pps">0</span></p>
+            <button id="toy-upgrade" disabled>Buy Toy Factory (200 Points)</button>
           </div>
           <!-- New Upgrades -->
           <div id="dogwash-info">
-            <p>
-              Dog Washes Owned: <span id="dogwash-owned">0</span>
-            </p>
-            <p>
-              Dog Wash PPS: <span id="dogwash-pps">0</span>
-            </p>
-            <button id="dogwash-upgrade" disabled>
-              Buy Dog Wash (1000 Points)
-            </button>
+            <p>Dog Washes Owned: <span id="dogwash-owned">0</span></p>
+            <p>Dog Wash PPS: <span id="dogwash-pps">0</span></p>
+            <button id="dogwash-upgrade" disabled>Buy Dog Wash (1000 Points)</button>
           </div>
           <div id="gmail-info">
-            <p>
-              Gmails Owned: <span id="gmail-owned">0</span>
-            </p>
-            <p>
-              Gmail PPS: <span id="gmail-pps">0</span>
-            </p>
-            <button id="gmail-upgrade" disabled>
-              Buy Gmail (5000 Points)
-            </button>
+            <p>Gmails Owned: <span id="gmail-owned">0</span></p>
+            <p>Gmail PPS: <span id="gmail-pps">0</span></p>
+            <button id="gmail-upgrade" disabled>Buy Gmail (5000 Points)</button>
           </div>
           <div id="washington-info">
-            <p>
-              Washingtons Owned: <span id="washington-owned">0</span>
-            </p>
-            <p>
-              Washington PPS: <span id="washington-pps">0</span>
-            </p>
-            <button id="washington-upgrade" disabled>
-              Buy Washington (20000 Points)
-            </button>
+            <p>Washingtons Owned: <span id="washington-owned">0</span></p>
+            <p>Washington PPS: <span id="washington-pps">0</span></p>
+            <button id="washington-upgrade" disabled>Buy Washington (20000 Points)</button>
           </div>
         </div>
         <div id="click-upgrades">
           <h2>Click Upgrades</h2>
           <div>
-            <p>
-              Click Power: <span id="click-power">1</span> Pibble Points per
-              Click
-            </p>
-            <button id="click-upgrade" disabled>
-              Increase Click Power (100 Points)
-            </button>
+            <p>Click Power: <span id="click-power">1</span> Pibble Points per Click</p>
+            <button id="click-upgrade" disabled>Increase Click Power (100 Points)</button>
+          </div>
+          <!-- New "Pibbles" Section -->
+          <h3>Pibbles</h3>
+          <div id="pibbles-section">
+            <p>Status: <span id="pibbles-status">Base</span></p>
+            <button id="pibbles-upgrade" disabled>Upgrade Pibbles (1000000 Points)</button>
           </div>
         </div>
       </div>
-
-      <!-- New separate container for Pibbles upgrade placed beneath the upgrades container -->
-      <div id="pibbles-container">
-        <h2>Pibbles</h2>
-        <p>Status: <span id="pibbles-status">Base</span></p>
-        <button id="pibbles-upgrade" disabled>
-          Upgrade Pibbles (1000000 Points)
-        </button>
-      </div>
-
       <button id="reset-button">Reset Game</button>
     </div>
 
