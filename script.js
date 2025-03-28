@@ -7,11 +7,10 @@ let toyFactories = 0;
 let clickPower = 1;
 let clickUpgradeCost = 100;
 
-// New upgrade: Pibbles – first grade
+// First Pibbles upgrade (integrated in click upgrades)
 let pibblesUpgrade = false;
 let pibblesCost = 1000000;
-
-// New upgrade: Pibbles – second grade
+// Second Pibbles upgrade
 let pibblesUpgrade2 = false;
 let pibblesUpgrade2Cost = 100000000;
 
@@ -29,7 +28,7 @@ const treatPPSDisplay = document.getElementById("treat-pps");
 const toyOwnedDisplay = document.getElementById("toy-owned");
 const toyPPSDisplay = document.getElementById("toy-pps");
 
-// New upgrade display elements for Dog Wash, Gmail, and Washington:
+// New upgrade display elements for Dog Wash, Gmail, Washington:
 const dogWashOwnedDisplay = document.getElementById("dogwash-owned");
 const dogWashPPSDisplay = document.getElementById("dogwash-pps");
 const gmailOwnedDisplay = document.getElementById("gmail-owned");
@@ -37,18 +36,30 @@ const gmailPPSDisplay = document.getElementById("gmail-pps");
 const washingtonOwnedDisplay = document.getElementById("washington-owned");
 const washingtonPPSDisplay = document.getElementById("washington-pps");
 
-// New upgrade display elements for Pibbles upgrade:
+// New upgrade display elements for Pibbles:
 const pibblesStatusDisplay = document.getElementById("pibbles-status");
 const pibblesUpgradeButton = document.getElementById("pibbles-upgrade");
 const pibblesUpgrade2Button = document.getElementById("pibbles-upgrade2");
 
-// New upgrades for Dog Wash, Gmail, and Washington:
+// New upgrades for Dog Wash, Gmail, Washington:
 let dogWash = 0;
 let dogWashCost = 1000; // effect: 10 PPS
 let gmail = 0;
 let gmailCost = 5000;   // effect: 30 PPS
 let washington = 0;
 let washingtonCost = 20000; // effect: 100 PPS
+
+// New additional upgrades:
+let bagels = 0;
+let bagelsCost = 100000; // initial cost for Bagels; effect: 300 PPS
+let franklins = 0;
+let franklinsCost = 500000; // effect: 1500 PPS
+let geebles = 0;
+let geeblesCost = 2000000; // effect: 5000 PPS
+let waffles = 0;
+let wafflesCost = 10000000; // effect: 25000 PPS
+let jiggles = 0;
+let jigglesCost = 50000000; // effect: 100000 PPS
 
 // Load saved progress from localStorage
 function loadProgress() {
@@ -61,28 +72,38 @@ function loadProgress() {
     clickUpgradeCost = savedData.clickUpgradeCost || 100;
     treatGeneratorCost = savedData.treatGeneratorCost || 50;
     toyFactoryCost = savedData.toyFactoryCost || 200;
-    // Load new upgrades
+    
     dogWash = savedData.dogWash || 0;
     dogWashCost = savedData.dogWashCost || 1000;
     gmail = savedData.gmail || 0;
     gmailCost = savedData.gmailCost || 5000;
     washington = savedData.washington || 0;
     washingtonCost = savedData.washingtonCost || 20000;
+    
     pibblesUpgrade = savedData.pibblesUpgrade || false;
     pibblesCost = savedData.pibblesCost || 1000000;
     pibblesUpgrade2 = savedData.pibblesUpgrade2 || false;
     pibblesUpgrade2Cost = savedData.pibblesUpgrade2Cost || 100000000;
+    
+    bagels = savedData.bagels || 0;
+    bagelsCost = savedData.bagelsCost || 100000;
+    franklins = savedData.franklins || 0;
+    franklinsCost = savedData.franklinsCost || 500000;
+    geebles = savedData.geebles || 0;
+    geeblesCost = savedData.geeblesCost || 2000000;
+    waffles = savedData.waffles || 0;
+    wafflesCost = savedData.wafflesCost || 10000000;
+    jiggles = savedData.jiggles || 0;
+    jigglesCost = savedData.jigglesCost || 50000000;
+    
     updatePoints();
-    // If first pibbles upgrade was purchased, update image/status accordingly.
     if (pibblesUpgrade) {
       document.getElementById("pibble-image").src = "pibblelevel2.png";
       pibblesStatusDisplay.textContent = "Upgraded";
-      // Show second upgrade button if not purchased already.
       if (!pibblesUpgrade2) {
         document.getElementById("pibbles-upgrade2-container").style.display = "block";
       }
     }
-    // If second pibbles upgrade was purchased, update image.
     if (pibblesUpgrade2) {
       document.getElementById("pibble-image").src = "pibblelevel3.png";
       document.getElementById("pibbles-upgrade2-container").style.display = "none";
@@ -111,6 +132,16 @@ function saveProgress() {
     pibblesCost,
     pibblesUpgrade2,
     pibblesUpgrade2Cost,
+    bagels,
+    bagelsCost,
+    franklins,
+    franklinsCost,
+    geebles,
+    geeblesCost,
+    waffles,
+    wafflesCost,
+    jiggles,
+    jigglesCost,
   };
   localStorage.setItem("pibbleProgress", JSON.stringify(saveData));
 }
@@ -125,16 +156,30 @@ resetButton.addEventListener("click", () => {
     clickUpgradeCost = 100;
     treatGeneratorCost = 50;
     toyFactoryCost = 200;
+    
     dogWash = 0;
     dogWashCost = 1000;
     gmail = 0;
     gmailCost = 5000;
     washington = 0;
     washingtonCost = 20000;
+    
     pibblesUpgrade = false;
     pibblesCost = 1000000;
     pibblesUpgrade2 = false;
     pibblesUpgrade2Cost = 100000000;
+    
+    bagels = 0;
+    bagelsCost = 100000;
+    franklins = 0;
+    franklinsCost = 500000;
+    geebles = 0;
+    geeblesCost = 2000000;
+    waffles = 0;
+    wafflesCost = 10000000;
+    jiggles = 0;
+    jigglesCost = 50000000;
+    
     localStorage.removeItem("pibbleProgress");
     document.getElementById("pibble-image").src = "pibble.png";
     pibblesStatusDisplay.textContent = "Base";
@@ -212,25 +257,20 @@ pibblesUpgradeButton.addEventListener("click", () => {
   if (!pibblesUpgrade && points >= pibblesCost) {
     points -= pibblesCost;
     pibblesUpgrade = true;
-    // Change main click button's image to the upgraded version (level 2)
     document.getElementById("pibble-image").src = "pibblelevel2.png";
     pibblesStatusDisplay.textContent = "Upgraded";
     updatePoints();
-    // Now reveal the second upgrade button
     document.getElementById("pibbles-upgrade2-container").style.display = "block";
   }
 });
 
 // Second Pibbles upgrade event listener:
-document.getElementById("pibbles-upgrade2").addEventListener("click", () => {
+pibblesUpgrade2Button.addEventListener("click", () => {
   if (!pibblesUpgrade2 && points >= pibblesUpgrade2Cost) {
     points -= pibblesUpgrade2Cost;
     pibblesUpgrade2 = true;
-    // Change main click button's image to level 3
     document.getElementById("pibble-image").src = "pibblelevel3.png";
-    // For this upgrade, double the Toy Factory effect.
     document.getElementById("pibbles2-status").textContent = "Upgraded";
-    // Hide the second upgrade button after purchase.
     document.getElementById("pibbles-upgrade2-container").style.display = "none";
     updatePoints();
   }
@@ -240,6 +280,7 @@ function updatePoints() {
   pointsDisplay.textContent = `Pibble Points: ${points}`;
   clickPowerDisplay.textContent = clickPower;
   clickUpgradeButton.textContent = `Increase Click Power (${clickUpgradeCost} Points)`;
+
   treatUpgrade.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
   toyUpgrade.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
   document.getElementById("dogwash-upgrade").textContent = `Buy Dog Wash (${dogWashCost} Points)`;
@@ -247,24 +288,35 @@ function updatePoints() {
   document.getElementById("washington-upgrade").textContent = `Buy Washington (${washingtonCost} Points)`;
   pibblesUpgradeButton.textContent = `Upgrade Pibbles (${pibblesCost} Points)`;
   pibblesUpgrade2Button.textContent = `Upgrade Pibbles (${pibblesUpgrade2Cost} Points)`;
-  
-  // Update owned counts and PPS; treat generators effect is doubled if first pibbles upgrade is purchased.
+
+  // Update owned counts and PPS
   treatOwnedDisplay.textContent = treatGenerators;
   treatPPSDisplay.textContent = treatGenerators * (pibblesUpgrade ? 2 : 1);
-  
-  // Toy factories: if second pibbles upgrade is purchased, double toy factory income.
+
   toyOwnedDisplay.textContent = toyFactories;
   toyPPSDisplay.textContent = toyFactories * (pibblesUpgrade2 ? 10 : 5);
-  
+
   dogWashOwnedDisplay.textContent = dogWash;
   dogWashPPSDisplay.textContent = dogWash * 10;
-  
+
   gmailOwnedDisplay.textContent = gmail;
   gmailPPSDisplay.textContent = gmail * 30;
-  
+
   washingtonOwnedDisplay.textContent = washington;
   washingtonPPSDisplay.textContent = washington * 100;
-  
+
+  // Update new additional upgrades:
+  document.getElementById("bagels-owned").textContent = bagels;
+  document.getElementById("bagels-pps").textContent = bagels * 300;
+  document.getElementById("franklins-owned").textContent = franklins;
+  document.getElementById("franklins-pps").textContent = franklins * 1500;
+  document.getElementById("geebles-owned").textContent = geebles;
+  document.getElementById("geebles-pps").textContent = geebles * 5000;
+  document.getElementById("waffles-owned").textContent = waffles;
+  document.getElementById("waffles-pps").textContent = waffles * 25000;
+  document.getElementById("jiggles-owned").textContent = jiggles;
+  document.getElementById("jiggles-pps").textContent = jiggles * 100000;
+
   clickUpgradeButton.disabled = points < clickUpgradeCost;
   treatUpgrade.disabled = points < treatGeneratorCost;
   toyUpgrade.disabled = points < toyFactoryCost;
@@ -273,24 +325,78 @@ function updatePoints() {
   document.getElementById("washington-upgrade").disabled = points < washingtonCost;
   pibblesUpgradeButton.disabled = pibblesUpgrade || points < pibblesCost;
   pibblesUpgrade2Button.disabled = pibblesUpgrade2 || points < pibblesUpgrade2Cost;
-  
+
+  // Additional upgrade buttons disabling:
+  document.getElementById("bagels-upgrade").disabled = points < bagelsCost;
+  document.getElementById("franklins-upgrade").disabled = points < franklinsCost;
+  document.getElementById("geebles-upgrade").disabled = points < geeblesCost;
+  document.getElementById("waffles-upgrade").disabled = points < wafflesCost;
+  document.getElementById("jiggles-upgrade").disabled = points < jigglesCost;
+
   saveProgress();
 }
 
-// Passive generation including new upgrades. Note that:
- // - Treat generators produce 1 point each (doubled if first Pibbles upgrade is active).
- // - Toy factories produce 5 points each (doubled to 10 if second Pibbles upgrade is active).
+// Passive generation including new upgrades
 setInterval(() => {
   points +=
     treatGenerators * (pibblesUpgrade ? 2 : 1) +
     toyFactories * (pibblesUpgrade2 ? 10 : 5) +
     dogWash * 10 +
     gmail * 30 +
-    washington * 100;
+    washington * 100 +
+    bagels * 300 +
+    franklins * 1500 +
+    geebles * 5000 +
+    waffles * 25000 +
+    jiggles * 100000;
   updatePoints();
 }, 1000);
 
-loadProgress();
+// Additional upgrade event listeners:
+document.getElementById("bagels-upgrade").addEventListener("click", () => {
+  if (points >= bagelsCost) {
+    points -= bagelsCost;
+    bagels++;
+    bagelsCost += 20000;
+    updatePoints();
+  }
+});
+
+document.getElementById("franklins-upgrade").addEventListener("click", () => {
+  if (points >= franklinsCost) {
+    points -= franklinsCost;
+    franklins++;
+    franklinsCost += 100000;
+    updatePoints();
+  }
+});
+
+document.getElementById("geebles-upgrade").addEventListener("click", () => {
+  if (points >= geeblesCost) {
+    points -= geeblesCost;
+    geebles++;
+    geeblesCost += 500000;
+    updatePoints();
+  }
+});
+
+document.getElementById("waffles-upgrade").addEventListener("click", () => {
+  if (points >= wafflesCost) {
+    points -= wafflesCost;
+    waffles++;
+    wafflesCost += 2000000;
+    updatePoints();
+  }
+});
+
+document.getElementById("jiggles-upgrade").addEventListener("click", () => {
+  if (points >= jigglesCost) {
+    points -= jigglesCost;
+    jiggles++;
+    jigglesCost += 10000000;
+    updatePoints();
+  }
+});
 
 /* --- Code for Snake Flyout --- */
 const snakeButton = document.getElementById("snake-button");
