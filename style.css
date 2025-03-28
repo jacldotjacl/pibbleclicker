@@ -98,10 +98,18 @@ body {
   animation: bounce 0.3s ease;
 }
 @keyframes bounce {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.2); }
-  50% { transform: scale(0.9); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 button:disabled {
   cursor: not-allowed;
@@ -170,12 +178,14 @@ button:disabled {
   background-color: #ff3333;
 }
 
-/* New Styles for the Pibbles Section */
-#pibbles-section {
+/* New Styles for the Pibbles Upgrade Sections inside Click Upgrades container */
+#pibbles-upgrade-container {
+  margin-top: 20px;
   border-top: 1px dashed #ccc;
   padding-top: 10px;
-  margin-top: 10px;
 }
-#pibbles-section h3 {
-  margin: 10px 0;
+#pibbles-upgrade2-container {
+  margin-top: 20px;
+  border-top: 1px dashed #ccc;
+  padding-top: 10px;
 }
