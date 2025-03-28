@@ -56,7 +56,6 @@ function loadProgress() {
     clickUpgradeCost = savedData.clickUpgradeCost || 100;
     treatGeneratorCost = savedData.treatGeneratorCost || 50;
     toyFactoryCost = savedData.toyFactoryCost || 200;
-
     // Load new upgrades
     dogWash = savedData.dogWash || 0;
     dogWashCost = savedData.dogWashCost || 1000;
@@ -66,7 +65,6 @@ function loadProgress() {
     washingtonCost = savedData.washingtonCost || 20000;
     pibblesUpgrade = savedData.pibblesUpgrade || false;
     pibblesCost = savedData.pibblesCost || 1000000;
-
     updatePoints();
     // If pibbles upgrade was purchased, update the image accordingly
     if (pibblesUpgrade) {
@@ -127,7 +125,6 @@ resetButton.addEventListener("click", () => {
 clickButton.addEventListener("click", () => {
   points += clickPower;
   updatePoints();
-
   // Add bounce effect to Pibble button
   const pibbleImage = document.getElementById("pibble-image");
   pibbleImage.classList.add("clicked");
