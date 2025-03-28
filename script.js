@@ -69,7 +69,7 @@ clickButton.addEventListener("click", () => {
   points += clickPower;
   updatePoints();
 
-  // Add bounce effect
+  // Add bounce effect to Pibble button
   const pibbleImage = document.getElementById("pibble-image");
   pibbleImage.classList.add("clicked");
 
@@ -114,11 +114,11 @@ function updatePoints() {
   treatUpgrade.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
   toyUpgrade.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
 
-  // Update owned and PPS for Treat Generators
+  // Update owned count and PPS for Treat Generators
   treatOwnedDisplay.textContent = treatGenerators;
   treatPPSDisplay.textContent = treatGenerators * 1;
 
-  // Update owned and PPS for Toy Factories
+  // Update owned count and PPS for Toy Factories
   toyOwnedDisplay.textContent = toyFactories;
   toyPPSDisplay.textContent = toyFactories * 5;
 
@@ -135,5 +135,18 @@ setInterval(() => {
   updatePoints();
 }, 1000);
 
-// Load progress on page load
+// Load progress when the page loads
 loadProgress();
+
+/* --- New Code for Snake Flyout --- */
+const snakeButton = document.getElementById("snake-button");
+const flyoutWindow = document.getElementById("flyout-window");
+const flyoutClose = document.getElementById("flyout-close");
+
+snakeButton.addEventListener("click", () => {
+  flyoutWindow.style.display = "block";
+});
+
+flyoutClose.addEventListener("click", () => {
+  flyoutWindow.style.display = "none";
+});
