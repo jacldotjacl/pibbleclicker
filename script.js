@@ -10,6 +10,12 @@ const treatUpgrade = document.getElementById("treat-upgrade");
 const toyUpgrade = document.getElementById("toy-upgrade");
 const resetButton = document.getElementById("reset-button");
 
+// Display elements for upgrades
+const treatOwnedDisplay = document.getElementById("treat-owned");
+const treatPPSDisplay = document.getElementById("treat-pps");
+const toyOwnedDisplay = document.getElementById("toy-owned");
+const toyPPSDisplay = document.getElementById("toy-pps");
+
 // Load saved progress from localStorage
 function loadProgress() {
   const savedData = JSON.parse(localStorage.getItem("pibbleProgress"));
@@ -75,6 +81,14 @@ function updatePoints() {
   pointsDisplay.textContent = `Pibble Points: ${points}`;
   treatUpgrade.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
   toyUpgrade.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
+
+  // Update owned and PPS for Treat Generators
+  treatOwnedDisplay.textContent = treatGenerators;
+  treatPPSDisplay.textContent = treatGenerators * 1;
+
+  // Update owned and PPS for Toy Factories
+  toyOwnedDisplay.textContent = toyFactories;
+  toyPPSDisplay.textContent = toyFactories * 5;
 
   treatUpgrade.disabled = points < treatGeneratorCost;
   toyUpgrade.disabled = points < toyFactoryCost;
