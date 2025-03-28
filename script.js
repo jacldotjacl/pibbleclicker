@@ -212,7 +212,7 @@ function updatePoints() {
   document.getElementById("washington-upgrade").textContent = `Buy Washington (${washingtonCost} Points)`;
   pibblesUpgradeButton.textContent = `Upgrade Pibbles (${pibblesCost} Points)`;
 
-  // Update owned counts and PPS; note that treat generator effect is doubled if pibblesUpgrade is true.
+  // Update owned counts and PPS; treat generator effect is doubled if pibblesUpgrade is true.
   treatOwnedDisplay.textContent = treatGenerators;
   treatPPSDisplay.textContent = treatGenerators * (pibblesUpgrade ? 2 : 1);
 
@@ -239,9 +239,14 @@ function updatePoints() {
   saveProgress();
 }
 
-// Passive generation including new upgrades—with treat generators now multiplied if pibblesUpgrade is true.
+// Passive generation including new upgrades—with treat generators multiplied if pibblesUpgrade is true.
 setInterval(() => {
-  points += treatGenerators * (pibblesUpgrade ? 2 : 1) + toyFactories * 5 + dogWash * 10 + gmail * 30 + washington * 100;
+  points +=
+    treatGenerators * (pibblesUpgrade ? 2 : 1) +
+    toyFactories * 5 +
+    dogWash * 10 +
+    gmail * 30 +
+    washington * 100;
   updatePoints();
 }, 1000);
 
