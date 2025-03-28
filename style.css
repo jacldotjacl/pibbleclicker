@@ -8,8 +8,31 @@ body {
   padding: 0;
 }
 
-/* Flyout Window for Snake Game (center-left) */
-#flyout-window {
+/* Top Left Buttons */
+#snake-button,
+#subway-button {
+  position: fixed;
+  top: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+#snake-button {
+  left: 10px;
+}
+#snake-button img, 
+#subway-button img {
+  width: 50px;
+  height: auto;
+}
+#subway-button {
+  left: 70px;
+}
+
+/* Flyout Windows (for both games) */
+#flyout-window,
+#flyout-subway {
   position: fixed;
   top: 50%;
   left: 10px;
@@ -22,14 +45,16 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: none;
 }
-#flyout-window iframe {
+#flyout-window iframe,
+#flyout-subway iframe {
   width: 100%;
-  height: calc(100% - 40px); /* leave room for header */
+  height: calc(100% - 40px); /* room for header */
   border: none;
 }
 
-/* Header within the flyout window */
-#flyout-header {
+/* Flyout Headers */
+#flyout-header,
+#flyout-header-subway {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,11 +62,13 @@ body {
   padding: 5px 10px;
   border-bottom: 1px solid #ccc;
 }
-#enter-text {
+#enter-text,
+#enter-text-subway {
   font-size: 14px;
   color: #333;
 }
-#flyout-close {
+#flyout-close,
+#flyout-close-subway {
   background: #ff6666;
   color: #fff;
   border: none;
@@ -49,23 +76,8 @@ body {
   cursor: pointer;
 }
 
-/* Snake Button (top left) */
-#snake-button {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-#snake-button img {
-  width: 50px;
-  height: auto;
-}
-
 /* Pibble Button */
-button {
+#click-button {
   padding: 0;
   border: none;
   background-color: transparent;
@@ -86,18 +98,10 @@ button {
   animation: bounce 0.3s ease;
 }
 @keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-  30% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
 button:disabled {
   cursor: not-allowed;
@@ -108,7 +112,7 @@ button:disabled {
   margin-top: 50px;
 }
 
-/* Container for Upgrades */
+/* Container for Upgrade Sections */
 #upgrades-container {
   display: flex;
   justify-content: center;
