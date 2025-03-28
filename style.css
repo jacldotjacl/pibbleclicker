@@ -33,6 +33,15 @@ button:disabled {
   cursor: not-allowed;
 }
 
+#upgrades div {
+  margin: 20px 0;
+}
+
+#upgrades p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
 #upgrades button {
   margin: 10px;
   padding: 10px 20px;
