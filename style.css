@@ -1,3 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #fdf6e3;
+  color: #333;
+}
+
+#game-container {
+  margin-top: 50px;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#pibble-image {
+  width: 150px;
+  height: auto;
+  border: 2px solid #ffcccb;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+#pibble-image:hover {
+  transform: scale(1.1);
+  border-color: #ff9999;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+#upgrades button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffcccb;
+  transition: 0.3s;
+}
+
+#upgrades button:hover {
+  background-color: #ff9999;
+}
+
+#upgrades button:disabled {
+  background-color: #ddd;
+}
+
 #reset-button {
   margin-top: 20px;
   padding: 10px 20px;
