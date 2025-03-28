@@ -114,11 +114,9 @@ function updatePoints() {
   treatUpgrade.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
   toyUpgrade.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
 
-  // Update owned count and PPS for Treat Generators
   treatOwnedDisplay.textContent = treatGenerators;
   treatPPSDisplay.textContent = treatGenerators * 1;
 
-  // Update owned count and PPS for Toy Factories
   toyOwnedDisplay.textContent = toyFactories;
   toyPPSDisplay.textContent = toyFactories * 5;
 
@@ -142,12 +140,22 @@ const snakeButton = document.getElementById("snake-button");
 const flyoutWindow = document.getElementById("flyout-window");
 const flyoutClose = document.getElementById("flyout-close");
 
+// Store the original URL for the snake iframe
+const snakeIframe = flyoutWindow.querySelector("iframe");
+const snakeURL = "https://emulatoros.github.io/gfile/snake/";
+
 snakeButton.addEventListener("click", () => {
+  // Restore iframe src if empty
+  if (!snakeIframe.getAttribute("src")) {
+    snakeIframe.setAttribute("src", snakeURL);
+  }
   flyoutWindow.style.display = "block";
 });
 
 flyoutClose.addEventListener("click", () => {
   flyoutWindow.style.display = "none";
+  // Unload the iframe to stop audio playback
+  snakeIframe.setAttribute("src", "");
 });
 
 /* --- Code for Subway Flyout --- */
@@ -155,17 +163,30 @@ const subwayButton = document.getElementById("subway-button");
 const flyoutSubway = document.getElementById("flyout-subway");
 const flyoutCloseSubway = document.getElementById("flyout-close-subway");
 
+// Store the original URL for the subway iframe
+const subwayIframe = flyoutSubway.querySelector("iframe");
+const subwayURL = "https://77pen.github.io/p8/subway-surfers-newyork/";
+
 subwayButton.addEventListener("click", () => {
+  if (!subwayIframe.getAttribute("src")) {
+    subwayIframe.setAttribute("src", subwayURL);
+  }
   flyoutSubway.style.display = "block";
 });
 
 flyoutCloseSubway.addEventListener("click", () => {
   flyoutSubway.style.display = "none";
+  // Unload the iframe to stop audio playback
+  subwayIframe.setAttribute("src", "");
 });
 
 // Global keydown handler now only opens the snake flyout with Enter
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     flyoutWindow.style.display = "block";
+    // Also restore the snake iframe src if needed
+    if (!snakeIframe.getAttribute("src")) {
+      snakeIframe.setAttribute("src", snakeURL);
+    }
   }
 });
