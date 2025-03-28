@@ -7,13 +7,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Snake Button in the top left corner -->
+  <button id="snake-button">
+    <img src="snakebutton.png" alt="Snake">
+  </button>
+  
+  <!-- Flyout Window for Snake Game (hidden by default) -->
+  <div id="flyout-window">
+    <button id="flyout-close">X</button>
+    <iframe src="https://emulatoros.github.io/gfile/snake/"></iframe>
+  </div>
+  
+  <!-- Main Game Container -->
   <div id="game-container">
     <h1>Pibble Paradise Clicker</h1>
     <p id="points">Pibble Points: 0</p>
     <button id="click-button">
       <img src="pibble.png" alt="Pibble" id="pibble-image">
     </button>
-    <!-- Container for both upgrade sections -->
+    <!-- Container for Upgrade Sections -->
     <div id="upgrades-container">
       <div id="upgrades">
         <h2>Upgrades</h2>
@@ -38,6 +50,7 @@
     </div>
     <button id="reset-button">Reset Game</button>
   </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
