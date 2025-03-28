@@ -4,13 +4,18 @@ let toyFactoryCost = 200;
 let treatGenerators = 0;
 let toyFactories = 0;
 
+let clickPower = 1;
+let clickUpgradeCost = 100;
+
 const pointsDisplay = document.getElementById("points");
 const clickButton = document.getElementById("click-button");
 const treatUpgrade = document.getElementById("treat-upgrade");
 const toyUpgrade = document.getElementById("toy-upgrade");
 const resetButton = document.getElementById("reset-button");
 
-// Display elements for upgrades
+const clickPowerDisplay = document.getElementById("click-power");
+const clickUpgradeButton = document.getElementById("click-upgrade");
+
 const treatOwnedDisplay = document.getElementById("treat-owned");
 const treatPPSDisplay = document.getElementById("treat-pps");
 const toyOwnedDisplay = document.getElementById("toy-owned");
@@ -23,6 +28,8 @@ function loadProgress() {
     points = savedData.points || 0;
     treatGenerators = savedData.treatGenerators || 0;
     toyFactories = savedData.toyFactories || 0;
+    clickPower = savedData.clickPower || 1;
+    clickUpgradeCost = savedData.clickUpgradeCost || 100;
     treatGeneratorCost = savedData.treatGeneratorCost || 50;
     toyFactoryCost = savedData.toyFactoryCost || 200;
     updatePoints();
@@ -35,6 +42,8 @@ function saveProgress() {
     points,
     treatGenerators,
     toyFactories,
+    clickPower,
+    clickUpgradeCost,
     treatGeneratorCost,
     toyFactoryCost,
   };
@@ -47,6 +56,8 @@ resetButton.addEventListener("click", () => {
     points = 0;
     treatGenerators = 0;
     toyFactories = 0;
+    clickPower = 1;
+    clickUpgradeCost = 100;
     treatGeneratorCost = 50;
     toyFactoryCost = 200;
     localStorage.removeItem("pibbleProgress");
@@ -55,7 +66,7 @@ resetButton.addEventListener("click", () => {
 });
 
 clickButton.addEventListener("click", () => {
-  points++;
+  points += clickPower;
   updatePoints();
 
   // Add bounce effect
@@ -66,6 +77,15 @@ clickButton.addEventListener("click", () => {
   setTimeout(() => {
     pibbleImage.classList.remove("clicked");
   }, 300);
+});
+
+clickUpgradeButton.addEventListener("click", () => {
+  if (points >= clickUpgradeCost) {
+    points -= clickUpgradeCost;
+    clickPower++;
+    clickUpgradeCost += 50;
+    updatePoints();
+  }
 });
 
 treatUpgrade.addEventListener("click", () => {
@@ -88,6 +108,9 @@ toyUpgrade.addEventListener("click", () => {
 
 function updatePoints() {
   pointsDisplay.textContent = `Pibble Points: ${points}`;
+  clickPowerDisplay.textContent = clickPower;
+  clickUpgradeButton.textContent = `Increase Click Power (${clickUpgradeCost} Points)`;
+
   treatUpgrade.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
   toyUpgrade.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
 
@@ -99,8 +122,10 @@ function updatePoints() {
   toyOwnedDisplay.textContent = toyFactories;
   toyPPSDisplay.textContent = toyFactories * 5;
 
+  clickUpgradeButton.disabled = points < clickUpgradeCost;
   treatUpgrade.disabled = points < treatGeneratorCost;
   toyUpgrade.disabled = points < toyFactoryCost;
+
   saveProgress();
 }
 
