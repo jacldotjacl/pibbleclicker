@@ -1,5 +1,5 @@
-window.addEventListener("DOMContentLoaded", () => {
-  // Core game variables and all our other declarations remain unchanged:
+document.addEventListener("DOMContentLoaded", function () {
+  // Core game variables
   let points = 0;
   let treatGeneratorCost = 50;
   let toyFactoryCost = 200;
@@ -9,30 +9,30 @@ window.addEventListener("DOMContentLoaded", () => {
   let clickUpgradeCost = 100;
 
   // Pibbles upgrade variables
-  let pibblesUpgrade = false;
+  let pibblesUpgrade = false; // First Pibbles upgrade (1,000,000 points)
   let pibblesCost = 1000000;
-  let pibblesUpgrade2 = false;
+  let pibblesUpgrade2 = false; // Second Pibbles upgrade (100,000,000 points)
   let pibblesUpgrade2Cost = 100000000;
 
-  // Additional upgrades
+  // Additional upgrades (Dog Wash, Gmail, Washington)
   let dogWash = 0;
-  let dogWashCost = 1000;
+  let dogWashCost = 1000; // Effect: 10 PPS
   let gmail = 0;
-  let gmailCost = 5000;
+  let gmailCost = 5000; // Effect: 30 PPS
   let washington = 0;
-  let washingtonCost = 20000;
+  let washingtonCost = 20000; // Effect: 100 PPS
 
   // New additional upgrades (Bagels, Franklins, Geebles, Waffles, Jiggles)
   let bagels = 0;
-  let bagelsCost = 100000;
+  let bagelsCost = 100000; // Effect: 300 PPS
   let franklins = 0;
-  let franklinsCost = 500000;
+  let franklinsCost = 500000; // Effect: 1500 PPS
   let geebles = 0;
-  let geeblesCost = 2000000;
+  let geeblesCost = 2000000; // Effect: 5000 PPS
   let waffles = 0;
-  let wafflesCost = 10000000;
+  let wafflesCost = 10000000; // Effect: 25000 PPS
   let jiggles = 0;
-  let jigglesCost = 50000000;
+  let jigglesCost = 50000000; // Effect: 100000 PPS
 
   // Get DOM elements
   const pointsDisplay = document.getElementById("points");
@@ -59,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const pibblesUpgradeButton = document.getElementById("pibbles-upgrade");
   const pibblesUpgrade2Button = document.getElementById("pibbles-upgrade2");
 
-  // New additional upgrades DOM elements (if present)
+  // New additional upgrades DOM elements (if they exist)
   const bagelsOwnedDisplay = document.getElementById("bagels-owned");
   const bagelsPPSDisplay = document.getElementById("bagels-pps");
   const franklinsOwnedDisplay = document.getElementById("franklins-owned");
@@ -149,12 +149,80 @@ window.addEventListener("DOMContentLoaded", () => {
       waffles,
       wafflesCost,
       jiggles,
-      jigglesCost
+      jigglesCost,
     };
     localStorage.setItem("pibbleProgress", JSON.stringify(saveData));
   }
 
-  // Event listener for Reset button
+  // Update displays and save progress
+  function updatePoints() {
+    pointsDisplay.textContent = `Pibble Points: ${points}`;
+    clickPowerDisplay.textContent = clickPower;
+    clickUpgradeButton.textContent = `Increase Click Power (${clickUpgradeCost} Points)`;
+    treatUpgradeBtn.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
+    toyUpgradeBtn.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
+    document.getElementById("dogwash-upgrade").textContent = `Buy Dog Wash (${dogWashCost} Points)`;
+    document.getElementById("gmail-upgrade").textContent = `Buy Gmail (${gmailCost} Points)`;
+    document.getElementById("washington-upgrade").textContent = `Buy Washington (${washingtonCost} Points)`;
+    pibblesUpgradeButton.textContent = `Upgrade Pibbles (${pibblesCost} Points)`;
+    pibblesUpgrade2Button.textContent = `Upgrade Pibbles (${pibblesUpgrade2Cost} Points)`;
+
+    treatOwnedDisplay.textContent = treatGenerators;
+    treatPPSDisplay.textContent = treatGenerators * (pibblesUpgrade ? 2 : 1);
+    toyOwnedDisplay.textContent = toyFactories;
+    toyPPSDisplay.textContent = toyFactories * (pibblesUpgrade2 ? 10 : 5);
+    dogWashOwnedDisplay.textContent = dogWash;
+    dogWashPPSDisplay.textContent = dogWash * 10;
+    gmailOwnedDisplay.textContent = gmail;
+    gmailPPSDisplay.textContent = gmail * 30;
+    washingtonOwnedDisplay.textContent = washington;
+    washingtonPPSDisplay.textContent = washington * 100;
+
+    if (bagelsOwnedDisplay) {
+      bagelsOwnedDisplay.textContent = bagels;
+      bagelsPPSDisplay.textContent = bagels * 300;
+    }
+    if (franklinsOwnedDisplay) {
+      franklinsOwnedDisplay.textContent = franklins;
+      franklinsPPSDisplay.textContent = franklins * 1500;
+    }
+    if (geeblesOwnedDisplay) {
+      geeblesOwnedDisplay.textContent = geebles;
+      geeblesPPSDisplay.textContent = geebles * 5000;
+    }
+    if (wafflesOwnedDisplay) {
+      wafflesOwnedDisplay.textContent = waffles;
+      wafflesPPSDisplay.textContent = waffles * 25000;
+    }
+    if (jigglesOwnedDisplay) {
+      jigglesOwnedDisplay.textContent = jiggles;
+      jigglesPPSDisplay.textContent = jiggles * 100000;
+    }
+
+    // Disable upgrade buttons if points are low
+    clickUpgradeButton.disabled = points < clickUpgradeCost;
+    treatUpgradeBtn.disabled = points < treatGeneratorCost;
+    toyUpgradeBtn.disabled = points < toyFactoryCost;
+    document.getElementById("dogwash-upgrade").disabled = points < dogWashCost;
+    document.getElementById("gmail-upgrade").disabled = points < gmailCost;
+    document.getElementById("washington-upgrade").disabled = points < washingtonCost;
+    pibblesUpgradeButton.disabled = pibblesUpgrade || points < pibblesCost;
+    pibblesUpgrade2Button.disabled = pibblesUpgrade2 || points < pibblesUpgrade2Cost;
+    if (document.getElementById("bagels-upgrade"))
+      document.getElementById("bagels-upgrade").disabled = points < bagelsCost;
+    if (document.getElementById("franklins-upgrade"))
+      document.getElementById("franklins-upgrade").disabled = points < franklinsCost;
+    if (document.getElementById("geebles-upgrade"))
+      document.getElementById("geebles-upgrade").disabled = points < geeblesCost;
+    if (document.getElementById("waffles-upgrade"))
+      document.getElementById("waffles-upgrade").disabled = points < wafflesCost;
+    if (document.getElementById("jiggles-upgrade"))
+      document.getElementById("jiggles-upgrade").disabled = points < jigglesCost;
+
+    saveProgress();
+  }
+
+  // Reset button event listener
   resetButton.addEventListener("click", () => {
     if (window.confirm("Are you sure you want to reset all progress?")) {
       points = 0;
@@ -196,7 +264,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Manual Click Event
+  // Click button event listener
   clickButton.addEventListener("click", () => {
     points += clickPower;
     updatePoints();
@@ -207,7 +275,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 300);
   });
 
-  // Click Upgrade Event
+  // Click upgrade event listener
   clickUpgradeButton.addEventListener("click", () => {
     if (points >= clickUpgradeCost) {
       points -= clickUpgradeCost;
@@ -217,7 +285,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Treat Generator Event
+  // Treat generator event listener
   treatUpgradeBtn.addEventListener("click", () => {
     if (points >= treatGeneratorCost) {
       points -= treatGeneratorCost;
@@ -227,7 +295,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Toy Factory Event
+  // Toy factory event listener
   toyUpgradeBtn.addEventListener("click", () => {
     if (points >= toyFactoryCost) {
       points -= toyFactoryCost;
@@ -237,7 +305,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Dog Wash Event
+  // Dog Wash event listener
   document.getElementById("dogwash-upgrade").addEventListener("click", () => {
     if (points >= dogWashCost) {
       points -= dogWashCost;
@@ -247,7 +315,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Gmail Event
+  // Gmail event listener
   document.getElementById("gmail-upgrade").addEventListener("click", () => {
     if (points >= gmailCost) {
       points -= gmailCost;
@@ -257,7 +325,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Washington Event
+  // Washington event listener
   document.getElementById("washington-upgrade").addEventListener("click", () => {
     if (points >= washingtonCost) {
       points -= washingtonCost;
@@ -267,7 +335,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // First Pibbles Upgrade Event
+  // First Pibbles upgrade event listener
   pibblesUpgradeButton.addEventListener("click", () => {
     if (!pibblesUpgrade && points >= pibblesCost) {
       points -= pibblesCost;
@@ -279,7 +347,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Second Pibbles Upgrade Event
+  // Second Pibbles upgrade event listener
   pibblesUpgrade2Button.addEventListener("click", () => {
     if (!pibblesUpgrade2 && points >= pibblesUpgrade2Cost) {
       points -= pibblesUpgrade2Cost;
@@ -291,7 +359,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Additional Upgrades Event Listeners
+  // Additional upgrades event listeners
   document.getElementById("bagels-upgrade").addEventListener("click", () => {
     if (points >= bagelsCost) {
       points -= bagelsCost;
@@ -333,7 +401,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Passive generation using setInterval (every second)
+  // Passive generation (runs every second)
   setInterval(() => {
     points +=
       treatGenerators * (pibblesUpgrade ? 2 : 1) +
@@ -387,7 +455,7 @@ window.addEventListener("DOMContentLoaded", () => {
     subwayIframe.setAttribute("src", "");
   });
 
-  // Global keydown handler: Only Enter opens the Snake flyout.
+  // Global keydown handler for Snake flyout (Enter)
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       flyoutWindow.style.display = "block";
@@ -397,6 +465,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Finally, load progress from localStorage on startup
+  // Finally, load progress on startup
   loadProgress();
 });
