@@ -138,15 +138,24 @@ setInterval(() => {
 // Load progress when the page loads
 loadProgress();
 
-/* --- New Code for Snake Flyout --- */
+/* --- Code for Snake Flyout --- */
 const snakeButton = document.getElementById("snake-button");
 const flyoutWindow = document.getElementById("flyout-window");
 const flyoutClose = document.getElementById("flyout-close");
 
+// Open flyout on snake button click
 snakeButton.addEventListener("click", () => {
   flyoutWindow.style.display = "block";
 });
 
+// Close flyout when close button is clicked
 flyoutClose.addEventListener("click", () => {
   flyoutWindow.style.display = "none";
+});
+
+// Open flyout when Enter key is pressed
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    flyoutWindow.style.display = "block";
+  }
 });
