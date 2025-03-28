@@ -98,18 +98,10 @@ body {
   animation: bounce 0.3s ease;
 }
 @keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-  30% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
 button:disabled {
   cursor: not-allowed;
@@ -178,14 +170,28 @@ button:disabled {
   background-color: #ff3333;
 }
 
-/* New Styles for the Pibbles Upgrade Sections inside Click Upgrades container */
+/* New Styles for Pibbles Upgrade within Click Upgrades */
 #pibbles-upgrade-container {
   margin-top: 20px;
   border-top: 1px dashed #ccc;
   padding-top: 10px;
 }
+
+/* The second Pibbles upgrade container is inside the Pibbles section,
+   initially set to display:none (its display is controlled by JS) */
 #pibbles-upgrade2-container {
   margin-top: 20px;
+  border-top: 1px dashed #ccc;
+  padding-top: 10px;
+}
+
+/* Additional Upgrades (Bagels, Franklins, Geebles, Waffles, Jiggles) */
+#bagels-info,
+#franklins-info,
+#geebles-info,
+#waffles-info,
+#jiggles-info {
+  margin-top: 10px;
   border-top: 1px dashed #ccc;
   padding-top: 10px;
 }
