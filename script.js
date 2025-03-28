@@ -35,15 +35,17 @@ function saveProgress() {
   localStorage.setItem("pibbleProgress", JSON.stringify(saveData));
 }
 
-// Reset progress
+// Reset progress with confirmation popup
 resetButton.addEventListener("click", () => {
-  points = 0;
-  treatGenerators = 0;
-  toyFactories = 0;
-  treatGeneratorCost = 50;
-  toyFactoryCost = 200;
-  localStorage.removeItem("pibbleProgress");
-  updatePoints();
+  if (window.confirm("Are you sure you want to reset all progress?")) {
+    points = 0;
+    treatGenerators = 0;
+    toyFactories = 0;
+    treatGeneratorCost = 50;
+    toyFactoryCost = 200;
+    localStorage.removeItem("pibbleProgress");
+    updatePoints();
+  }
 });
 
 clickButton.addEventListener("click", () => {
@@ -73,7 +75,7 @@ function updatePoints() {
   pointsDisplay.textContent = `Pibble Points: ${points}`;
   treatUpgrade.textContent = `Buy Treat Generator (${treatGeneratorCost} Points)`;
   toyUpgrade.textContent = `Buy Toy Factory (${toyFactoryCost} Points)`;
-  
+
   treatUpgrade.disabled = points < treatGeneratorCost;
   toyUpgrade.disabled = points < toyFactoryCost;
   saveProgress();
