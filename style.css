@@ -170,15 +170,12 @@ button:disabled {
   background-color: #ff3333;
 }
 
-/* New Styles for the Pibbles Container */
-#pibbles-container {
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #fff;
-  width: 300px;
-  margin: 20px auto; /* Centers the Pibbles container and adds vertical spacing */
+/* New Styles for the Pibbles Section */
+#pibbles-section {
+  border-top: 1px dashed #ccc;
+  padding-top: 10px;
+  margin-top: 10px;
 }
-#pibbles-container h2 {
-  margin-top: 0;
+#pibbles-section h3 {
+  margin: 10px 0;
 }
