@@ -8,6 +8,21 @@ body {
   padding: 0;
 }
 
+/* Instruction Text at the Top Center */
+#enter-text {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  z-index: 1000;
+}
+
 /* Main Game Container */
 #game-container {
   margin-top: 50px;
@@ -28,19 +43,19 @@ body {
   height: auto;
 }
 
-/* Flyout Window for Snake Game */
+/* Flyout Window for Snake Game (now center-left) */
 #flyout-window {
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 10px;
   width: 400px;
   height: 300px;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   background-color: #fff;
   border: 2px solid #333;
   z-index: 2000;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  display: none; /* hidden by default */
+  display: none;
 }
 #flyout-window iframe {
   width: 100%;
