@@ -8,6 +8,43 @@ const pointsDisplay = document.getElementById("points");
 const clickButton = document.getElementById("click-button");
 const treatUpgrade = document.getElementById("treat-upgrade");
 const toyUpgrade = document.getElementById("toy-upgrade");
+const resetButton = document.getElementById("reset-button");
+
+// Load saved progress from localStorage
+function loadProgress() {
+  const savedData = JSON.parse(localStorage.getItem("pibbleProgress"));
+  if (savedData) {
+    points = savedData.points || 0;
+    treatGenerators = savedData.treatGenerators || 0;
+    toyFactories = savedData.toyFactories || 0;
+    treatGeneratorCost = savedData.treatGeneratorCost || 50;
+    toyFactoryCost = savedData.toyFactoryCost || 200;
+    updatePoints();
+  }
+}
+
+// Save progress to localStorage
+function saveProgress() {
+  const saveData = {
+    points,
+    treatGenerators,
+    toyFactories,
+    treatGeneratorCost,
+    toyFactoryCost,
+  };
+  localStorage.setItem("pibbleProgress", JSON.stringify(saveData));
+}
+
+// Reset progress
+resetButton.addEventListener("click", () => {
+  points = 0;
+  treatGenerators = 0;
+  toyFactories = 0;
+  treatGeneratorCost = 50;
+  toyFactoryCost = 200;
+  localStorage.removeItem("pibbleProgress");
+  updatePoints();
+});
 
 clickButton.addEventListener("click", () => {
   points++;
@@ -39,6 +76,7 @@ function updatePoints() {
   
   treatUpgrade.disabled = points < treatGeneratorCost;
   toyUpgrade.disabled = points < toyFactoryCost;
+  saveProgress();
 }
 
 // Generate points passively
@@ -46,3 +84,6 @@ setInterval(() => {
   points += treatGenerators + toyFactories * 5;
   updatePoints();
 }, 1000);
+
+// Load progress on page load
+loadProgress();
