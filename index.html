@@ -13,24 +13,27 @@
     <button id="click-button">
       <img src="pibble.png" alt="Pibble" id="pibble-image">
     </button>
-    <div id="upgrades">
-      <h2>Upgrades</h2>
-      <div id="treat-info">
-        <p>Treat Generators Owned: <span id="treat-owned">0</span></p>
-        <p>Treat Generators PPS: <span id="treat-pps">0</span></p>
-        <button id="treat-upgrade" disabled>Buy Treat Generator (50 Points)</button>
+    <!-- Container for both upgrade sections -->
+    <div id="upgrades-container">
+      <div id="upgrades">
+        <h2>Upgrades</h2>
+        <div id="treat-info">
+          <p>Treat Generators Owned: <span id="treat-owned">0</span></p>
+          <p>Treat Generators PPS: <span id="treat-pps">0</span></p>
+          <button id="treat-upgrade" disabled>Buy Treat Generator (50 Points)</button>
+        </div>
+        <div id="toy-info">
+          <p>Toy Factories Owned: <span id="toy-owned">0</span></p>
+          <p>Toy Factories PPS: <span id="toy-pps">0</span></p>
+          <button id="toy-upgrade" disabled>Buy Toy Factory (200 Points)</button>
+        </div>
       </div>
-      <div id="toy-info">
-        <p>Toy Factories Owned: <span id="toy-owned">0</span></p>
-        <p>Toy Factories PPS: <span id="toy-pps">0</span></p>
-        <button id="toy-upgrade" disabled>Buy Toy Factory (200 Points)</button>
-      </div>
-    </div>
-    <div id="click-upgrades">
-      <h2>Click Upgrades</h2>
-      <div>
-        <p>Click Power: <span id="click-power">1</span> Pibble Points per Click</p>
-        <button id="click-upgrade" disabled>Increase Click Power (100 Points)</button>
+      <div id="click-upgrades">
+        <h2>Click Upgrades</h2>
+        <div>
+          <p>Click Power: <span id="click-power">1</span> Pibble Points per Click</p>
+          <button id="click-upgrade" disabled>Increase Click Power (100 Points)</button>
+        </div>
       </div>
     </div>
     <button id="reset-button">Reset Game</button>
