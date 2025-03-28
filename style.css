@@ -1,21 +1,70 @@
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #fdf6e3;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
+/* Main Game Container */
 #game-container {
   margin-top: 50px;
 }
 
+/* Snake Button (top left) */
+#snake-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+#snake-button img {
+  width: 50px;
+  height: auto;
+}
+
+/* Flyout Window for Snake Game */
+#flyout-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 2px solid #333;
+  z-index: 2000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  display: none; /* hidden by default */
+}
+#flyout-window iframe {
+  width: 100%;
+  height: calc(100% - 30px); /* leave room for the close button */
+  border: none;
+}
+#flyout-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ff6666;
+  color: #fff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Pibble Button */
 button {
   padding: 0;
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
-
 #pibble-image {
   width: 150px;
   height: auto;
@@ -23,36 +72,24 @@ button {
   border-radius: 10px;
   transition: 0.3s;
 }
-
 #pibble-image:hover {
   transform: scale(1.1);
   border-color: #ff9999;
 }
-
 #pibble-image.clicked {
   animation: bounce 0.3s ease;
 }
-
 @keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-  30% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }
-
 button:disabled {
   cursor: not-allowed;
 }
 
-/* New container to place both upgrades side by side */
+/* Container for Upgrades */
 #upgrades-container {
   display: flex;
   justify-content: center;
@@ -60,8 +97,6 @@ button:disabled {
   gap: 20px;
   margin: 20px 0;
 }
-
-/* Styles for each upgrade section */
 #upgrades, #click-upgrades {
   border: 1px solid #ddd;
   padding: 10px;
@@ -69,16 +104,13 @@ button:disabled {
   background-color: #fff;
   width: 300px;
 }
-
 #upgrades h2, #click-upgrades h2 {
   margin-top: 0;
 }
-
 #upgrades p, #click-upgrades p {
   font-size: 14px;
   margin: 5px 0;
 }
-
 #upgrades button, #click-upgrades button {
   margin: 10px;
   padding: 10px 20px;
@@ -88,15 +120,12 @@ button:disabled {
   background-color: #ffcccb;
   transition: 0.3s;
 }
-
 #upgrades button:hover, #click-upgrades button:hover {
   background-color: #ff9999;
 }
-
 #upgrades button:disabled, #click-upgrades button:disabled {
   background-color: #ddd;
 }
-
 #reset-button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -108,7 +137,6 @@ button:disabled {
   cursor: pointer;
   transition: 0.3s;
 }
-
 #reset-button:hover {
   background-color: #ff3333;
 }
