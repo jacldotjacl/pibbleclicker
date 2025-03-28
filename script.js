@@ -131,11 +131,10 @@ function updatePoints() {
 
 // Generate points passively
 setInterval(() => {
-  points += treatGenerators + toyFactories * 5;
+  points += treatGenerators + (toyFactories * 5);
   updatePoints();
 }, 1000);
 
-// Load progress when the page loads
 loadProgress();
 
 /* --- Code for Snake Flyout --- */
@@ -162,4 +161,11 @@ subwayButton.addEventListener("click", () => {
 
 flyoutCloseSubway.addEventListener("click", () => {
   flyoutSubway.style.display = "none";
+});
+
+// Global keydown handler now only opens the snake flyout with Enter
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    flyoutWindow.style.display = "block";
+  }
 });
