@@ -45,7 +45,7 @@ function createUpgradeElements() {
         upgradeCard.innerHTML = `
             <div class="upgrade-header">
                 <span class="upgrade-emoji">${upgrade.emoji}</span>
-                <h3>${upgrade.icon} ${upgrade.name}</h3>
+                <h3>${upgrade.name}</h3>
             </div>
             <p>${upgrade.description}</p>
             <p>Cost: <span id="${upgradeType}Cost">${upgrade.baseCost}</span> pibbles</p>
@@ -69,7 +69,7 @@ function createUpgradeElements() {
         boosterCard.innerHTML = `
             <div class="booster-header">
                 <span class="booster-emoji">${booster.emoji}</span>
-                <h3>${booster.icon} ${booster.name}</h3>
+                <h3>${booster.name}</h3>
             </div>
             <p>${booster.description}</p>
             <p>Cost: <span id="${boosterType}Cost">${booster.baseCost}</span> pibbles</p>
