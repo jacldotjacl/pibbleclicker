@@ -6,7 +6,6 @@ const upgrades = {
         baseCost: 10,
         baseProduction: 1,
         costMultiplier: 1.15,
-        icon: "🐕",
         emoji: "🤖"
     },
     pibbleFarm: {
@@ -15,7 +14,6 @@ const upgrades = {
         baseCost: 100,
         baseProduction: 5,
         costMultiplier: 1.15,
-        icon: "🏡",
         emoji: "🌾"
     },
     pibbleMansion: {
@@ -24,7 +22,6 @@ const upgrades = {
         baseCost: 1000,
         baseProduction: 20,
         costMultiplier: 1.15,
-        icon: "🏰",
         emoji: "💎"
     }
 };
@@ -38,7 +35,6 @@ const boosters = {
         targetUpgrade: "autoPibble",
         multiplier: 2,
         costMultiplier: 2,
-        icon: "⚡",
         emoji: "🚀"
     },
     pibbleFarmBoost: {
@@ -48,7 +44,6 @@ const boosters = {
         targetUpgrade: "pibbleFarm",
         multiplier: 2,
         costMultiplier: 2,
-        icon: "⚡",
         emoji: "🌪️"
     },
     pibbleMansionBoost: {
@@ -58,7 +53,6 @@ const boosters = {
         targetUpgrade: "pibbleMansion",
         multiplier: 2,
         costMultiplier: 2,
-        icon: "⚡",
         emoji: "✨"
     }
 };
