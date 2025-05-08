@@ -43,7 +43,10 @@ function createUpgradeElements() {
         upgradeCard.id = upgradeType;
         
         upgradeCard.innerHTML = `
-            <h3>${upgrade.icon} ${upgrade.name}</h3>
+            <div class="upgrade-header">
+                <span class="upgrade-emoji">${upgrade.emoji}</span>
+                <h3>${upgrade.icon} ${upgrade.name}</h3>
+            </div>
             <p>${upgrade.description}</p>
             <p>Cost: <span id="${upgradeType}Cost">${upgrade.baseCost}</span> pibbles</p>
             <p>Owned: <span id="${upgradeType}Count">0</span></p>
@@ -64,7 +67,10 @@ function createUpgradeElements() {
         boosterCard.id = boosterType;
         
         boosterCard.innerHTML = `
-            <h3>${booster.icon} ${booster.name}</h3>
+            <div class="booster-header">
+                <span class="booster-emoji">${booster.emoji}</span>
+                <h3>${booster.icon} ${booster.name}</h3>
+            </div>
             <p>${booster.description}</p>
             <p>Cost: <span id="${boosterType}Cost">${booster.baseCost}</span> pibbles</p>
             <p>Owned: <span id="${boosterType}Count">0</span></p>
