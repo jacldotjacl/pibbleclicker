@@ -62,9 +62,16 @@ h1 {
 }
 
 #pibbleImage {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff6b6b;
+    transition: transform 0.2s;
+}
+
+#clickButton:active #pibbleImage {
+    transform: scale(0.9);
 }
 
 .upgrades, .boosters {
@@ -133,4 +140,29 @@ h1 {
 
 .booster h3 {
     color: #ff9800;
+}
+
+.upgrade-header, .booster-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.upgrade-emoji, .booster-emoji {
+    font-size: 2.5em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.booster-emoji {
+    background-color: #fff8e1;
+    border: 2px solid #ffd54f;
 } 
