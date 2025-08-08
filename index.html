@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pibble Clicker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🪨</div>
+        <div class="title-wrap">
+          <h1>Pibble Clicker</h1>
+          <p class="tagline">Grow the legend. One click at a time.</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Pibble</div>
+          <div class="value" id="pibbblesCount">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Per second</div>
+          <div class="value" id="pps">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Per click</div>
+          <div class="value" id="ppc">1</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="left">
+        <div class="big-button-wrap">
+          <button id="pibbleButton" class="big-button" aria-label="Click to collect Pibble">
+            <span class="pibble-emoji" aria-hidden="true">🪨</span>
+            <span class="pibble-label">Pibble</span>
+          </button>
+          <div id="floatingTexts" class="floating-texts" aria-hidden="true"></div>
+          <div id="goldenArea"></div>
+        </div>
+
+        <div class="panel achievements">
+          <h2>Achievements</h2>
+          <ul id="achievementsList"></ul>
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="panel shop">
+          <h2>Upgrades</h2>
+          <ul id="upgradesList" class="shop-list"></ul>
+        </div>
+
+        <div class="panel shop">
+          <h2>Buildings</h2>
+          <ul id="buildingsList" class="shop-list"></ul>
+        </div>
+
+        <div class="panel controls">
+          <h2>Save & data</h2>
+          <div class="buttons">
+            <button id="saveBtn">Save now</button>
+            <button id="resetBtn">Hard reset</button>
+            <button id="exportBtn">Export</button>
+            <button id="importToggleBtn">Import</button>
+          </div>
+          <div id="importBox" class="import-box hidden">
+            <textarea id="importText" placeholder="Paste save data here"></textarea>
+            <div class="buttons">
+              <button id="importConfirmBtn">Import data</button>
+              <button id="importCancelBtn">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel log">
+          <h2>Feed</h2>
+          <ul id="logList"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
